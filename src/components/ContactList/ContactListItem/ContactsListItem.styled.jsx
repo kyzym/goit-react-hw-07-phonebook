@@ -4,7 +4,7 @@ export const Contact = styled.li`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 `;
 
 export const DelButton = styled.button`
@@ -27,4 +27,16 @@ export const DelButton = styled.button`
   &:active {
     background-color: #bdbdbd;
   }
+`;
+
+export const Name = styled.p`
+  margin-left: 10%;
+  width: 45%;
+  font-size: 18px;
+  font-weight: 500;
+`;
+export const Number = styled.p`
+  margin-right: auto;
+  font-size: 18px;
+  font-weight: 500;
 `;
