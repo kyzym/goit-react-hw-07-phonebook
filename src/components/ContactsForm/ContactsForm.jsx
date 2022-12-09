@@ -1,14 +1,14 @@
-import { nanoid } from 'nanoid';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
+
+import { selectContacts } from 'redux/selectors';
 
 import { Button, FormTag, Input, Label } from './ContactForm.styled';
 
 export const Form = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -28,9 +28,12 @@ export const Form = () => {
       });
     }
 
-    const newContact = { id: nanoid(), name: nameValue, number: numberValue };
+    const newContact = {
+      name: nameValue,
+      phone: numberValue,
+    };
 
-    dispatch(addContact(newContact));
+    dispatch(addContact({ ...newContact }));
 
     form.reset();
   };

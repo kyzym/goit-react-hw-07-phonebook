@@ -1,5 +1,9 @@
-import { FcContacts, FcList } from 'react-icons/fc';
+import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { FcContacts, FcList } from 'react-icons/fc';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from 'redux/operations';
+import { selectError, selectIsLoading } from 'redux/selectors';
 import {
   ContactsList,
   ContactsNotification,
@@ -11,6 +15,14 @@ import {
 import { Box } from './utils/Box.styled';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
     <Box
       display="flex"
@@ -30,6 +42,7 @@ export const App = () => {
         <FcList />
       </SubTitle>
       <Filter />
+      {isLoading && !error && <b>Request in progress...</b>}
       <ContactsList />
       <ContactsNotification />
       <Toaster position="top-center" reverseOrder={false} />

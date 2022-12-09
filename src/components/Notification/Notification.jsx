@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
 export const ContactsNotification = () => {
-  const savedContacts = useSelector(getContacts);
+  const savedContacts = useSelector(selectContacts);
   return (
     <div>
       <span>Total number of contacts: {savedContacts.length}</span>
