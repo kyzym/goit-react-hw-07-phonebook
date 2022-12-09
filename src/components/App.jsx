@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { FcContacts, FcList } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from 'redux/operations';
 import { selectError, selectIsLoading } from 'redux/selectors';
 import {
   ContactsList,
@@ -12,6 +10,7 @@ import {
   SubTitle,
   Title,
 } from '.';
+import { useFetchContacts } from './utils/hooks';
 import { Box } from './utils/Box.styled';
 
 export const App = () => {
@@ -19,9 +18,7 @@ export const App = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  useFetchContacts(dispatch);
 
   return (
     <Box
@@ -36,7 +33,6 @@ export const App = () => {
         <FcContacts />
       </Title>
       <Form />
-
       <SubTitle>
         Contacts
         <FcList />
