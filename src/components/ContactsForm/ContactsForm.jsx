@@ -40,6 +40,7 @@ export const Form = () => {
 
   return (
     <FormTag onSubmit={handleSubmit}>
+      {console.log('render', Date.now())}
       <Label>
         Name:
         <Input
